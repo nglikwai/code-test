@@ -52,6 +52,6 @@ input:checked+.slider:before {
 }
 
 input:disabled+.slider {
-  background-color: #ccc;
+  opacity: 0.6;
   cursor: not-allowed;
 }
