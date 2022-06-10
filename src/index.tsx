@@ -21,16 +21,21 @@ class App extends React.PureComponent<{}, State> {
     render() {
         return (
             <div>
+                <h3>Controlled Switch</h3>
                 <Switch
                     disabled={this.state.isSwitchDisabled}
                     checked={this.state.isSwitchChecked}
                     onChange={this.onChange}
                 />
-                <Switch />
+
+                <h3>Uncontrolled Switch</h3>
+                <Switch disabled={this.state.isSwitchDisabled} />
+
+                <h3>isSwitchDisabled : {JSON.stringify(this.state.isSwitchDisabled)}</h3>
+
                 <button type="button" onClick={this.onToggleDisable}>
                     Toggle Disable
                 </button>
-                <span style={{ display: "block" }}>isSwitchDisabled : {this.state.isSwitchDisabled ? "true" : "false"}</span>
             </div>
         );
     }
