@@ -2,19 +2,21 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Switch from "./Switch"
 
+interface Props {}
+
 interface State {
     isSwitchChecked: boolean;
     isSwitchDisabled: boolean;
 }
 
-class App extends React.PureComponent<{}, State> {
+class App extends React.PureComponent<Props, State> {
 
     public state: State = {
         isSwitchChecked: false,
         isSwitchDisabled: false,
     };
 
-    onToggleDisable = () => this.setState({ isSwitchDisabled: !this.state.isSwitchDisabled });
+    onToggleDisable = () => this.setState(({ isSwitchDisabled }) => ({ isSwitchDisabled: !isSwitchDisabled }));
 
     onChange = (checked: boolean) => this.setState({ isSwitchChecked: checked });
 
