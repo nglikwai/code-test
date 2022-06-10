@@ -4,40 +4,41 @@ import "./index.css";
 interface Props {
     checked?: boolean;
     onChange?: (checked: boolean) => void
-    disabled: boolean;
+    disabled?: boolean;
 }
 
-interface MyState {
-    isChecked: boolean
+interface State {
+    _checked: boolean
 }
 
-export default class Switch extends React.PureComponent<Props, MyState> {
+export default class Switch extends React.PureComponent<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
-            isChecked: false
+          _checked: false
         }
     }
 
     OnClickHandler = () => {
-        this.props.onChange
-            ? this.props.onChange(!this.props.checked)
-            : this.setState({ isChecked: !this.state.isChecked })
+      const { checked, onChange } = this.props;
+      onChange
+          ? onChange(!checked)
+          : this.setState(({ _checked }) => { _checked: !_checked })
     }
 
     render() {
-        return (
-            <div className="comp-switch">
-                <label className="switch">
-                    <input
-                        type={!this.props.disabled ? "checkbox" : ''}
-                        disabled={this.props.disabled}
-                        onClick={this.OnClickHandler}
-                    />
-                    <div className="slider"></div>
-
-                </label>
-            </div>
-        );
+      const { disabled } = this.props
+      return (
+          <div className="comp-switch">
+              <label className="switch">
+                  <input
+                      type="checkbox"
+                      disabled={disabled}
+                      onClick={this.OnClickHandler}
+                  />
+                  <div className="slider"></div>
+              </label>
+          </div>
+      );
     }
 }
