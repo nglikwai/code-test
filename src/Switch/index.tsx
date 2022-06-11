@@ -3,12 +3,12 @@ import "./index.css";
 
 interface Props {
     checked?: boolean;
-    onChange?: (checked: boolean) => void
+    onChange?: (checked: boolean) => void;
     disabled?: boolean;
 }
 
 interface State {
-    _checked: boolean
+    _checked: boolean;
 }
 
 export default class Switch extends React.PureComponent<Props, State> {
@@ -19,19 +19,19 @@ export default class Switch extends React.PureComponent<Props, State> {
         super(props);
         this.inputRef = React.createRef();
         this.state = {
-            _checked: false
-        }
+            _checked: false,
+        };
     }
 
     OnClickHandler = () => {
         const { checked, onChange } = this.props;
         onChange
             ? onChange(!checked)
-            : this.setState(({ _checked }) => { _checked: !_checked })
+            : this.setState({ _checked: !this.state._checked });
     }
 
     render() {
-        const { disabled } = this.props
+        const { disabled } = this.props;
         return (
             <div className="comp-switch">
                 <label className="switch">
@@ -41,7 +41,7 @@ export default class Switch extends React.PureComponent<Props, State> {
                         disabled={disabled}
                         onClick={this.OnClickHandler}
                     />
-                    <div className="slider"></div>
+                    <div className="slider" />
                 </label>
             </div>
         );

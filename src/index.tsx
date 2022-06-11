@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Switch from "./Switch"
+import Switch from "./Switch";
 import "./index.css";
-
 
 interface Props { }
 
@@ -17,10 +16,10 @@ class App extends React.PureComponent<Props, State> {
     public state: State = {
         isSwitchChecked: false,
         isSwitchDisabled: false,
-        uncontrolledChecked: false
+        uncontrolledChecked: false,
     };
 
-    ref = React.createRef<Switch>()
+    ref = React.createRef<Switch>();
 
     onToggleDisable = () => this.setState(({ isSwitchDisabled }) => ({ isSwitchDisabled: !isSwitchDisabled }));
 
@@ -29,12 +28,11 @@ class App extends React.PureComponent<Props, State> {
     getUncontrolledChecked = () => this.setState({
         uncontrolledChecked: this.ref.current
             && this.ref.current.inputRef.current
-            && this.ref.current.inputRef.current.checked
+            && this.ref.current.inputRef.current.checked,
     })
 
     render() {
-        const { isSwitchChecked, isSwitchDisabled, uncontrolledChecked } = this.state
-        console.log()
+        const { isSwitchChecked, isSwitchDisabled, uncontrolledChecked } = this.state;
         return (
             <div className="wrapper">
                 <div>
@@ -52,7 +50,6 @@ class App extends React.PureComponent<Props, State> {
 
                     <Switch ref={this.ref} disabled={isSwitchDisabled} />
                     <button onClick={this.getUncontrolledChecked}>uncontrolled Status</button>
-
 
                 </div>
                 <div>
